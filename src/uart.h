@@ -6,6 +6,8 @@
 
 /* ---- CMSDK UART0 on MPS2-AN386 ---- */
 #define UART0_BASE 0x40004000u /* APB UART0 base */
+#define UART0_IRQn   0  // IRQ number in QEMU for UART0
+
 typedef struct {
     volatile uint32_t DATA;      /* 0x00 */
     volatile uint32_t STATE;     /* 0x04 */
@@ -22,13 +24,20 @@ typedef struct {
 
 
 
+// in
+#define UART0_INT_RX      (1 << 0)
 
 #define RX_BUF_SIZE 64
 
+
+// NVIC registers (simple version)
+#define NVIC_ISER0       (*((volatile uint32_t *)0xE000E100))
+#define NVIC_EnableIRQ(irq)   (NVIC_ISER0 = (1 << (irq)))
 
 
 extern void uart_init(void);
 extern void uart_irq(void);
 extern void uart_puts(const char* s);
+extern int uart_getchar(void);
 
 #endif

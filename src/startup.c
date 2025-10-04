@@ -14,9 +14,7 @@ extern uint32_t _sidata, _sdata, _edata, _sbss, _ebss, _estack;
 extern void main(void);
 
 
-// NVIC registers (simple version)
-#define NVIC_ISER0       (*((volatile uint32_t *)0xE000E100))
-#define NVIC_EnableIRQ(irq)   (NVIC_ISER0 = (1 << (irq)))
+
 
 /* vector table at 0x00000000 */
 __attribute__((section(".isr_vector")))
