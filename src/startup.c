@@ -17,19 +17,13 @@ extern void main(void);
 
 
 /* vector table at 0x00000000 */
-__attribute__((section(".isr_vector")))
-void (* const vector_table[])(void) = {
-    (void (*)(void))(&_estack),  /* initial SP */
+__attribute__((section(".isr_vector"))) void (*const vector_table[])(void) = {
+    (void (*)(void))(&_estack), /* initial SP */
     Reset_Handler,
     NMI_Handler,
     HardFault_Handler,
-    uart_irq
+    [16 + 0] = uart_irq, // UART0 interrupt
 };
-
-
-
-
-
 
 void Reset_Handler(void) {
     /* copy .data from FLASH to RAM */

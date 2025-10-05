@@ -18,6 +18,7 @@ void uart_init(void) {
 
 void uart_irq(void)
 {
+    volatile uint32_t reg=UART0->INTSTATUS;
    if (UART0->INTSTATUS & UART0_INT_RX)
    {
     char c = UART0->DATA & 0xFF; //read received data

@@ -3,11 +3,16 @@
   "configurations": [
     {
       "name": "C/C++ Runner: Debug Session",
-      "type": "lldb",
+      "type": "cortex-debug",
       "request": "launch",
-      "args": [],
-      "cwd": "/Users/khtb/workset/qemu_cortexM",
-      "program": "/Users/khtb/workset/qemu_cortexM/build/Debug/outDebug"
+      "executable": "${workspaceFolder}/out/app.elf",
+      "servertype": "external",
+      "gdbTarget": "localhost:1234",
+      "device": "Cortex-M4" ,
+      "runToEntryPoint": "main",
+      "showDevDebugOutput": "raw",
+      "preLaunchTask": "LaunchQemu",
+      "postDebugTask": "killQemu"
     }
   ]
 }

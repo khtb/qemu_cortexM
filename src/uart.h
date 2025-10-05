@@ -25,7 +25,7 @@ typedef struct {
 
 
 // in
-#define UART0_INT_RX      (1 << 0)
+#define UART0_INT_RX      (1 << 1)
 
 #define RX_BUF_SIZE 64
 
