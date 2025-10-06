@@ -3,12 +3,14 @@
 #include "uart.h"
 
 
-/* forward decls */
 void Reset_Handler(void);
 void Default_Handler(void);
 
 void NMI_Handler(void)       __attribute__((weak, alias("Default_Handler")));
 void HardFault_Handler(void) __attribute__((weak, alias("Default_Handler")));
+
+
+
 /* linker symbols */
 extern uint32_t _sidata, _sdata, _edata, _sbss, _ebss, _estack;
 extern void main(void);

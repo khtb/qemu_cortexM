@@ -2,8 +2,8 @@ PROJECT = app
 SRCDIR = src
 OUTDIR = out
 
-LD      = $(CC)
 CC = arm-none-eabi-gcc
+LD      = $(CC)
 OBJCOPY = arm-none-eabi-objcopy
 CFLAGS  = -mcpu=cortex-m4 -mthumb -O0 -g -ffreestanding -fno-builtin -nostdlib
 LDFLAGS = -T linker.ld -nostartfiles -Wl,--gc-sections,-Map=$(OUTDIR)/$(PROJECT).map
@@ -27,8 +27,10 @@ clean:
 	rm -rf $(OUTDIR)
 
 run: $(ELF)
-	#qemu-system-arm -M cortex-r52 -cpu cortex-r52 -nographic -semihosting -kernel $(ELF)
+	qemu-system-arm -M mps2-an386 -cpu cortex-m4 -nographic -kernel $(ELF)
+
+debug: $(ELF)
 	qemu-system-arm -M mps2-an386 -cpu cortex-m4 -nographic -kernel $(ELF) -S -gdb tcp::1234
 
 diss: 
-	arm-none-eabi-objdump -d -C $(ELF) > uart_an386_disassembly.s
+	arm-none-eabi-objdump -d -C $(ELF) > $(OUTDIR)/$(PROJECT).diss

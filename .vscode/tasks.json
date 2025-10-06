@@ -12,7 +12,7 @@
 			"label": "LaunchQemu",
 			"type": "shell",
 			// "command": "qemu-system-arm -M mps2-an386 -cpu cortex-m4 -nographic -S -gdb tcp::1234 -kernel uart_an386.elf",
-			"command": "make run",
+			"command": "make debug",
 			"options": {
 				"cwd": "${workspaceFolder}"
 			},
