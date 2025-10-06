@@ -38,6 +38,8 @@ typedef struct {
 extern void uart_init(void);
 extern void uart_irq(void);
 extern void uart_puts(const char* s);
+extern void uart_print(const char* s);
 extern int uart_getchar(void);
+extern int uart_readLine(char * line, int max_len);
 
 #endif

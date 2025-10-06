@@ -8,19 +8,13 @@ int main(void)
     uart_puts("Hello, MPS2 AN386 (Cortex-M4) via UART0!\n");
     for (;;)
     {
-        int c = uart_getchar();
-        if (c != -1)
+        char line[20] ;
+        int x = uart_readLine(line, 64);
+        // -1 is no new line
+        if (x != -1)
         {
-            // Do something with received data
-            if (c == '\r' || c == '\n')
-            {
-                const char *ok = " [OK]\r\n";
-                for (const char *p = ok; *p; p++)
-                {
-                    while (UART0->STATE & UART_STATE_TXFULL);
-                    UART0->DATA = *p;
-                }
-            }
-        } /* loop forever */
+            uart_puts(line);
+            uart_puts("\nOK\n");
+        }
     }
 }

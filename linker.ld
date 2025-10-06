@@ -9,18 +9,23 @@ _estack = ORIGIN(RAM) + LENGTH(RAM);
 
 SECTIONS
 {
-  .isr_vector ORIGIN(FLASH) : { KEEP(*(.isr_vector)) } > FLASH
+  .isr_vector ORIGIN(FLASH) : 
+  { 
+    KEEP(*(.isr_vector)) 
+  } > FLASH
 
   .text : {
-    *(.text*) *(.rodata*) *(.glue_7) *(.glue_7t) *(.eh_frame*)
+    *(.text*) *(.rodata*)
   } > FLASH
 
   .data : AT (ADDR(.text) + SIZEOF(.text)) {
-    _sdata = .; *(.data*) _edata = .;
+    _sdata = .; 
+    *(.data*) _edata = .;
   } > RAM
   _sidata = LOADADDR(.data);
 
   .bss (NOLOAD) : {
-    _sbss = .; *(.bss*) *(COMMON) _ebss = .;
+    _sbss = .; 
+    *(.bss*) _ebss = .;
   } > RAM
 }

@@ -18,7 +18,7 @@ $(OUTDIR)/%.o: $(SRCDIR)/%.c | $(OUTDIR)
 	$(CC) $(CFLAGS) -c $< -o $@	
 
 $(ELF): $(OBJ) linker.ld
-	$(LD) $(CFLAGS) $(OBJ) -o $@ $(LDFLAGS)
+	$(LD) $(CFLAGS) $(OBJ) $(LDFLAGS) -o $@ 
 
 $(OUTDIR):
 	mkdir -p $(OUTDIR)
