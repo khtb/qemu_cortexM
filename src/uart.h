@@ -20,6 +20,7 @@ typedef struct {
 #define UART_STATE_TXFULL (1u << 0)
 #define UART_CTRL_TXEN    (1u << 0)
 #define UART_CTRL_RXEN    (1u << 1)
+
 #define UART_RX_IRQ_EN    (1u << 3)
 
 

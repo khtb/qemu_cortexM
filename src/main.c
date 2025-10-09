@@ -1,11 +1,11 @@
 #include <stdint.h>
 #include "uart.h"
+#include "FreeRTOS.h"
+#include "task.h"
 
 
-int main(void)
+void vTaskCounter(void *pvParameters)
 {
-    uart_init();
-    uart_puts("Hello, MPS2 AN386 (Cortex-M4) via UART0!\n");
     for (;;)
     {
         char line[20] ;
@@ -17,4 +17,14 @@ int main(void)
             uart_puts("\nOK\n");
         }
     }
+}
+
+
+int main(void)
+{
+    uart_init();
+    uart_puts("Hello, MPS2 AN386 (Cortex-M4) via UART0!\n");
+    xTaskCreate(vTaskCounter, "CounterTask", 128, NULL, tskIDLE_PRIORITY + 1, NULL);
+    // Start scheduler
+    vTaskStartScheduler();
 }
