@@ -1,6 +1,6 @@
 # ARM Cortex-M4 (QEMU)
 
-Small bare-metal C project for Cortex-M4. Runs in QEMU so you can develop and test without hardware.
+Small bare-metal C project for Cortex-M4. Runs in QEMU
 
 Build and run:
 
@@ -8,6 +8,8 @@ to start QEMU
 ```
 make run
 ```
+can debug using gdb ( vscode project settings works )
+
 
 # Environmet 
 .vscode settings to launch debug and start QEMU
@@ -23,5 +25,4 @@ example
   "cortex-debug.openocdPath": "/opt/homebrew/bin/openocd"
 ```
 
-That's it — simple and ready to extend.
 
